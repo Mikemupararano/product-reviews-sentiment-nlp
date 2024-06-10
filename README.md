@@ -1,6 +1,39 @@
 # Product Reviews Sentiment NLP
 This repository contains a Python script for performing sentiment analysis on a dataset of Amazon product reviews. The analysis uses the spaCy library and TextBlob for natural language processing and sentiment analysis.
 
+1. Importing Libraries:
+We import necessary libraries including pandas, spacy, spacytextblob, and nltk.
+
+2. Downloading NLTK Data:
+ We download the stopwords dataset from NLTK.
+
+3. Loading spaCy Model: 
+We load the en_core_web_sm spaCy model and add the spacytextblob component to perform sentiment analysis.
+
+4. Loading the Dataset: 
+We load the dataset from a CSV file named amazon_product_reviews.csv.
+
+5. Data Preprocessing: 
+We select the review.text column, drop missing values, and preprocess the text by removing stopwords and performing basic text cleaning.
+
+6. Sentiment Analysis Function: 
+We define a function analyze_sentiment that uses the spacytextblob component to determine the sentiment of a review based on its polarity score and sentiment attribute.
+
+7. Testing the Model:
+ We test the sentiment analysis function on a few sample reviews and print the results, including the sentiment, polarity, and sentiment score.
+
+8. Generating a Report: 
+A brief report summarizing the dataset, preprocessing steps, evaluation of results, and insights is generated and saved as a text file.
+
+9. Visualization: 
+Optionally, we plot the distribution of sentiments in the product reviews.
+
+10. Notes
+Ensure that the amazon_product_reviews.csv file is in the same directory as the script or provide the correct path to the file.
+
+The report is saved as a text file (sentiment_analysis_report.txt). If you prefer a PDF file, you can use libraries like fpdf or reportlab to generate a PDF.
+The script includes comments that clarify the rationale behind each line of code.
+
 ## Table of Contents
 
 - [Product Reviews Sentiment NLP](#product-reviews-sentiment-nlp)

@@ -1,87 +1,106 @@
+# sentiment_analysis.py
+# Importing important libraries
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+import nltk
 import spacy
+from nltk.tokenize import word_tokenize, sent_tokenize, RegexpTokenizer
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer, PorterStemmer
+from nltk.probability import FreqDist
+from nltk import pos_tag
+from wordcloud import WordCloud, STOPWORDS
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 from spacytextblob.spacytextblob import SpacyTextBlob
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, pairwise
 
-# Load the spaCy model
-nlp = spacy.load("en_core_web_sm")
+# Downloading necessary NLTK datasets
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
 
-# Add the TextBlob sentiment analysis pipeline component to spaCy
-nlp.add_pipe("spacytextblob")
+# Load the spaCy model and add the TextBlob component
+nlp = spacy.load('en_core_web_sm')
+nlp.add_pipe('spacytextblob')
 
-# Load the dataset
-dataframe = pd.read_csv('amazon_product_reviews.csv')
+# Load the dataset and handle mixed types
+df = pd.read_csv('amazon_product_reviews.csv', dtype={'column_name_1': str, 'column_name_10': str}, low_memory=False)
 
-# Preprocess the text data: select the 'review.text' column and remove missing values
-reviews_data = dataframe['reviews.text']
-clean_data = reviews_data.dropna()
+# Rename columns to remove any leading/trailing spaces
+df.columns = df.columns.str.strip()
 
-# Function for text cleaning
-def clean_text(text):
+# Select the 'reviews.title' column and drop missing values
+reviews_data = df['reviews.title']
+clean_data = reviews_data.dropna().reset_index(drop=True)
+
+# Preprocess the text data: remove stopwords and perform basic text cleaning
+def preprocess_text(text):
     doc = nlp(text)
-    tokens = [token.text.lower().strip() for token in doc if not token.is_stop and token.is_alpha]
+    tokens = [token.text.lower() for token in doc if not token.is_stop and token.is_alpha]
     return ' '.join(tokens)
 
-# Apply text cleaning to the reviews
-clean_data = clean_data.apply(clean_text)
+clean_data = clean_data.apply(preprocess_text)
 
-# Function for sentiment analysis
+# Define a function for sentiment analysis using polarity and sentiment attributes
 def analyze_sentiment(review):
     doc = nlp(review)
     polarity = doc._.blob.polarity
+    sentiment = doc._.blob.sentiment
     if polarity > 0:
-        return 'Positive'
+        return 'Positive', polarity, sentiment
     elif polarity < 0:
-        return 'Negative'
+        return 'Negative', polarity, sentiment
     else:
-        return 'Neutral'
+        return 'Neutral', polarity, sentiment
 
-# Test the sentiment analysis function on a few sample reviews
+# Test the sentiment analysis function on sample reviews
 sample_reviews = clean_data.sample(5)
-for review in sample_reviews:
-    sentiment = analyze_sentiment(review)
-    print(f"Review: {review}\nSentiment: {sentiment}\n")
+sample_results = sample_reviews.apply(analyze_sentiment)
 
-# Save sample results to a file for verification
-with open('sample_sentiment_results.txt', 'w') as f:
-    for review in sample_reviews:
-        sentiment = analyze_sentiment(review)
-        f.write(f"Review: {review}\nSentiment: {sentiment}\n\n")
+# Print sample reviews and their sentiments
+for review, result in zip(sample_reviews, sample_results):
+    sentiment, polarity, sentiment_score = result
+    print(f"Review: {review}\nSentiment: {sentiment}\nPolarity: {polarity}\nSentiment Score: {sentiment_score}\n")
 
-# Compare the similarity of two reviews
-review1 = nlp(clean_data.iloc[0])
-review2 = nlp(clean_data.iloc[1])
-similarity_score = review1.similarity(review2)
-print(f"Similarity between review 1 and review 2: {similarity_score}")
+# Generate a brief report
+report = """
+Sentiment Analysis Report
+=========================
+1. Description of the dataset:
+   - The dataset contains consumer reviews of Amazon products.
+   - The 'reviews.title' column represents the product review titles used for sentiment analysis.
 
-# Save similarity results to a file
-with open('review_similarity_results.txt', 'w') as f:
-    f.write(f"Review 1: {clean_data.iloc[0]}\n")
-    f.write(f"Review 2: {clean_data.iloc[1]}\n")
-    f.write(f"Similarity score: {similarity_score}\n")
+2. Preprocessing steps:
+   - Removed missing values.
+   - Removed stopwords.
+   - Converted text to lowercase and removed non-alphabetic characters.
 
-# Sentiment Analysis Report
+3. Evaluation of results:
+   - Sample reviews were analyzed, and their sentiments were predicted as positive, negative, or neutral based on polarity scores.
 
-## Dataset Description
-The dataset used for this analysis is the `Consumer Reviews of Amazon Products`. It contains customer reviews of various products sold on Amazon. The primary column of interest for this analysis is `review.text`, which contains the text of the product reviews.
+4. Insights:
+   - The model can classify the sentiment of product review titles based on their polarity scores.
+   - Strengths: Efficient preprocessing and sentiment analysis using spaCy and TextBlob.
+   - Limitations: Further tuning and a more complex model may be required for nuanced sentiment detection.
+"""
 
-## Preprocessing Steps
-1. **Loading Data**: The dataset was loaded using Pandas, focusing on the `review.text` column.
-2. **Cleaning Data**: Missing values in the `review.text` column were removed.
-3. **Text Cleaning**: Reviews were processed to remove stopwords and non-alphabetical characters. The text was also converted to lowercase and stripped of leading/trailing whitespace.
+# Save the report to a text file
+with open('sentiment_analysis_report.txt', 'w') as f:
+    f.write(report)
 
-## Evaluation of Results
-The sentiment analysis was tested on a few sample product reviews, and the results were saved in a file for verification. The polarity scores determined whether the sentiment was positive, negative, or neutral. The analysis also included comparing the similarity of two sample reviews using the spaCy similarity function.
+# Visualization (Optional): Plotting the distribution of sentiments
+sentiments = clean_data.apply(lambda x: analyze_sentiment(x)[0])
+sentiment_counts = sentiments.value_counts()
 
-## Insights
-The model effectively identified positive and negative sentiments in product reviews. However, the accuracy of sentiment detection can be affected by the complexity of the text and the presence of sarcasm or idiomatic expressions. The similarity function provided useful insights into how closely related two reviews were, which can be helpful for clustering similar reviews together.
-
-## Model Strengths and Limitations
-### Strengths
-- Easy to implement and integrate with existing spaCy pipelines.
-- Efficient text preprocessing and sentiment analysis.
-
-### Limitations
-- May not accurately capture nuanced sentiments such as sarcasm.
-- Limited by the quality and variety of the dataset.
-
-Overall, the sentiment analysis model provides a useful tool for understanding customer sentiments in product reviews but should be used in conjunction with other methods for comprehensive analysis.
+plt.figure(figsize=(8, 6))
+sentiment_counts.plot(kind='bar')
+plt.title('Sentiment Distribution of Product Review Titles')
+plt.xlabel('Sentiment')
+plt.ylabel('Count')
+plt.show()
