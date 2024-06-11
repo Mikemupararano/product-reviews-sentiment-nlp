@@ -68,7 +68,7 @@ Clone the repository:
 
 bash
 
-git clone https://github.com/Mikemupararano/product-reviews-sentiment-nlp.git
+git clone https://github.com/yourusername/product-reviews-sentiment-nlp.git
 Navigate to the project directory:
 
 bash
@@ -108,11 +108,8 @@ The script also includes functionality to compare the similarity of two reviews 
 # Results
 Sample sentiment results are saved in sample_sentiment_results.txt.
 Review similarity results are saved in review_similarity_results.txt.
-
 Report
-The detailed report of the sentiment analysis can be found in sentiment_analysis_report.pdf, which includes an image that was generated as follows:
-![Sentiment analysis chart:](./sentiment-dist.png)
-
+The detailed report of the sentiment analysis can be found in sentiment_analysis_report.pdf, which includes:
 
 # Description of the dataset
 Details of the preprocessing steps
@@ -121,12 +118,7 @@ Details of the preprocessing steps
 Insights into the model's strengths and limitations
 
 # Contributing
-
-I have used resources from this Github to complete this task:
-https://github.com/PacktPublishing/Python-Data-Analysis-Third-Edition/tree/master/Chapter12
-
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue.
-
 
 # License
 This project is licensed under the MIT License. See the LICENSE file for details.

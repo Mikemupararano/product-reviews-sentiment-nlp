@@ -1,19 +1,20 @@
 
-Sentiment Analysis Report
-=========================
-1. Description of the dataset:
-   - The dataset contains consumer reviews of Amazon products.
-   - The 'reviews.title' column represents the product review titles used for sentiment analysis.
+    Sentiment Analysis Report
+    =========================
+    1. Description of the dataset:
+       - The dataset contains consumer reviews of Amazon products.
+       - The 'reviews.title' column represents the product review titles used for sentiment analysis.
 
-2. Preprocessing steps:
-   - Removed missing values.
-   - Removed stopwords.
-   - Converted text to lowercase and removed non-alphabetic characters.
+    2. Preprocessing steps:
+       - Removed missing values.
+       - Removed stopwords.
+       - Converted text to lowercase and removed non-alphabetic characters.
 
-3. Evaluation of results:
-   - Sample reviews were analyzed, and their sentiments were predicted as positive, negative, or neutral based on polarity scores.
+    3. Evaluation of results:
+       - Sample reviews were analyzed, and their sentiments were predicted as positive, negative, or neutral based on polarity scores.
 
-4. Insights:
-   - The model can classify the sentiment of product review titles based on their polarity scores.
-   - Strengths: Efficient preprocessing and sentiment analysis using spaCy and TextBlob.
-   - Limitations: Further tuning and a more complex model may be required for nuanced sentiment detection.
+    4. Insights:
+       - The model can classify the sentiment of product review titles based on their polarity scores.
+       - Strengths: Efficient preprocessing and sentiment analysis using spaCy and TextBlob.
+       - Limitations: Further tuning and a more complex model may be required for nuanced sentiment detection.
+    
