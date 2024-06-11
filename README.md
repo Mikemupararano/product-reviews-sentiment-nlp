@@ -127,6 +127,7 @@ https://github.com/PacktPublishing/Python-Data-Analysis-Third-Edition/tree/maste
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue.
 
+The work is available on my Github repository at: https://github.com/Mikemupararano/product-reviews-sentiment-nlp.
 
 # License
 This project is licensed under the MIT License. See the LICENSE file for details.
