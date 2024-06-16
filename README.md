@@ -2,25 +2,25 @@
 This repository contains a Python script for performing sentiment analysis on a dataset of Amazon product reviews. The analysis uses the spaCy library and TextBlob for natural language processing and sentiment analysis.
 
 1. Importing Libraries:
-We import necessary libraries including pandas, spacy, spacytextblob, and nltk.
+Import necessary libraries including pandas, spacy, spacytextblob, and nltk.
 
 2. Downloading NLTK Data:
  We download the stopwords dataset from NLTK.
 
 3. Loading spaCy Model: 
-We load the en_core_web_sm spaCy model and add the spacytextblob component to perform sentiment analysis.
+Load the en_core_web_sm spaCy model and add the spacytextblob component to perform sentiment analysis.
 
 4. Loading the Dataset: 
-We load the dataset from a CSV file named amazon_product_reviews.csv.
+Load the dataset from a CSV file named amazon_product_reviews.csv.
 
 5. Data Preprocessing: 
-We select the review.text column, drop missing values, and preprocess the text by removing stopwords and performing basic text cleaning.
+Select the review.text column, drop missing values, and preprocess the text by removing stopwords and performing basic text cleaning.
 
 6. Sentiment Analysis Function: 
-We define a function analyze_sentiment that uses the spacytextblob component to determine the sentiment of a review based on its polarity score and sentiment attribute.
+Define a function analyze_sentiment that uses the spacytextblob component to determine the sentiment of a review based on its polarity score and sentiment attribute.
 
 7. Testing the Model:
- We test the sentiment analysis function on a few sample reviews and print the results, including the sentiment, polarity, and sentiment score.
+ Test the sentiment analysis function on a few sample reviews and print the results, including the sentiment, polarity, and sentiment score.
 
 8. Generating a Report: 
 A brief report summarizing the dataset, preprocessing steps, evaluation of results, and insights is generated and saved as a text file.
@@ -46,16 +46,15 @@ The script includes comments that clarify the rationale behind each line of code
 - [Sentiment Analysis](#sentiment-analysis)
 - [Similarity Analysis](#similarity-analysis)
 - [Results](#results)
-- [Description of the dataset](#description-of-the-dataset)
-- [Evaluation of results](#evaluation-of-results)
 - [Contributing](#contributing)
+- [Credits](#credits)
 - [License](#license)
 
 # Introduction
 This project aims to analyze the sentiment of product reviews from Amazon. By utilizing natural language processing (NLP) techniques, the script processes and classifies the sentiment of reviews as positive, negative, or neutral.
 
 # Dataset
-The dataset used for this analysis is the Consumer Reviews of Amazon Products. The primary column of interest is review.text, which contains the text of the product reviews. Make sure to save the dataset as amazon_product_reviews.csv.
+The dataset used for this analysis is the Consumer Reviews of Amazon Products. The primary column of interest is 'review.text', which contains the text of the product reviews. Make sure to save the dataset as amazon_product_reviews.csv.
 
 # Requirements
 Python 3.6 or higher
@@ -113,21 +112,14 @@ Report
 The detailed report of the sentiment analysis can be found in sentiment_analysis_report.pdf, which includes an image that was generated as follows:
 ![Sentiment analysis chart:](./sentiment-dist.png)
 
-
-# Description of the dataset
-Details of the preprocessing steps
-
-# Evaluation of results
-Insights into the model's strengths and limitations
-
 # Contributing
-
-I have used resources from this Github to complete this task:
-https://github.com/PacktPublishing/Python-Data-Analysis-Third-Edition/tree/master/Chapter12
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue.
 
 The work is available on my Github repository at: https://github.com/Mikemupararano/product-reviews-sentiment-nlp.
 
+# Credits
+I have used resources from this Github to complete this task:
+https://github.com/PacktPublishing/Python-Data-Analysis-Third-Edition/tree/master/Chapter12
 # License
 This project is licensed under the MIT License. See the LICENSE file for details.
