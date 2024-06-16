@@ -46,6 +46,7 @@ The script includes comments that clarify the rationale behind each line of code
 - [Sentiment Analysis](#sentiment-analysis)
 - [Similarity Analysis](#similarity-analysis)
 - [Results](#results)
+- [Report](#report)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
@@ -108,7 +109,7 @@ The script also includes functionality to compare the similarity of two reviews 
 Sample sentiment results are saved in sample_sentiment_results.txt.
 Review similarity results are saved in review_similarity_results.txt.
 
-Report
+# Report
 The detailed report of the sentiment analysis can be found in sentiment_analysis_report.pdf, which includes an image that was generated as follows:
 ![Sentiment analysis chart:](./sentiment-dist.png)
 
