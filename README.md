@@ -1,5 +1,7 @@
 # Product Reviews Sentiment NLP
-This repository contains a Python script for performing sentiment analysis on a dataset of Amazon product reviews. The analysis uses the spaCy library and TextBlob for natural language processing and sentiment analysis.
+
+## Description
+This repository contains a Python script for performing sentiment analysis on a dataset of Amazon product reviews. The analysis uses the spaCy library and TextBlob for natural language processing and sentiment analysis. Learning this part of data science is important of you are working in a business such as Aamzon where management may want to make decisions based on the sentiment analysis of customer reviews.
 
 1. Importing Libraries:
 Import necessary libraries including pandas, spacy, spacytextblob, and nltk.
@@ -37,27 +39,24 @@ The script includes comments that clarify the rationale behind each line of code
 ## Table of Contents
 
 - [Product Reviews Sentiment NLP](#product-reviews-sentiment-nlp)
+  - [Description](#description)
   - [Table of Contents](#table-of-contents)
-- [Introduction](#introduction)
-- [Dataset](#dataset)
-- [Requirements](#requirements)
-- [python sentiment\_analysis.py](#python-sentiment_analysispy)
-- [Preprocessing Steps](#preprocessing-steps)
-- [Sentiment Analysis](#sentiment-analysis)
-- [Similarity Analysis](#similarity-analysis)
-- [Results](#results)
-- [Report](#report)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+  - [Introduction](#introduction)
+  - [Dataset](#dataset)
+  - [Installations](#installations)
+  - [python sentiment\_analysis.py](#python-sentiment_analysispy)
+- [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
 
-# Introduction
+## Introduction
 This project aims to analyze the sentiment of product reviews from Amazon. By utilizing natural language processing (NLP) techniques, the script processes and classifies the sentiment of reviews as positive, negative, or neutral.
 
-# Dataset
+## Dataset
 The dataset used for this analysis is the Consumer Reviews of Amazon Products. The primary column of interest is 'review.text', which contains the text of the product reviews. Make sure to save the dataset as amazon_product_reviews.csv.
 
-# Requirements
+## Installations
 Python 3.6 or higher
 Pandas
 spaCy
@@ -91,36 +90,36 @@ Run the script:
 
 bash
 
-# python sentiment_analysis.py
+## python sentiment_analysis.py
 The script will preprocess the reviews, perform sentiment analysis, and print the results of sample reviews and their sentiments. Additionally, it will save the sentiment results and review similarity scores to respective text files for further inspection.
-
-# Preprocessing Steps
+# Usage
+Preprocessing Steps
 Loading Data: The dataset is loaded using Pandas, focusing on the review.text column.
 Cleaning Data: Missing values in the review.text column are removed.
 Text Cleaning: Reviews are processed to remove stopwords and non-alphabetical characters. The text is converted to lowercase and stripped of leading/trailing whitespace.
 
-# Sentiment Analysis
+Sentiment Analysis
 The sentiment analysis is performed using the TextBlob library integrated with spaCy. The polarity score determines whether the sentiment is positive, negative, or neutral.
 
-# Similarity Analysis
+Similarity Analysis
 The script also includes functionality to compare the similarity of two reviews using the spaCy similarity function, providing insights into how closely related two reviews are.
 
-# Results
+Results
 Sample sentiment results are saved in sample_sentiment_results.txt.
 Review similarity results are saved in review_similarity_results.txt.
 
-# Report
+Report
 The detailed report of the sentiment analysis can be found in sentiment_analysis_report.pdf, which includes an image that was generated as follows:
 ![Sentiment analysis chart:](./sentiment-dist.png)
 
-# Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue.
 
 The work is available on my Github repository at: https://github.com/Mikemupararano/product-reviews-sentiment-nlp.
 
-# Credits
+## Credits
 I have used resources from this Github to complete this task:
 https://github.com/PacktPublishing/Python-Data-Analysis-Third-Edition/tree/master/Chapter12
-# License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
